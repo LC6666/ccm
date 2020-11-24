@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.4.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	
+	<groupId>com.ccm</groupId>
+	<artifactId>demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>ccm</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.xiaoymin/swagger-bootstrap-ui -->
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>swagger-bootstrap-ui</artifactId>
+			<version>1.9.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.1.3</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core 
+			分解单元测试的耦合
+		-->
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-core</artifactId>
+		    <version>3.5.15</version>
+		    <scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin 
+			通过Mvn test命令可以一次性执行多个测试用例	-->
+		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-surefire-plugin</artifactId>
+		    <version>3.0.0-M5</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-report-plugin  生成HTML报告需要添加-->
+		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-surefire-report-plugin</artifactId>
+		    <version>3.0.0-M5</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin  基于Mvn 构建Jacoco更加全面的测试报告 路径覆盖，分支覆盖-->
+		<dependency>
+		    <groupId>org.jacoco</groupId>
+		    <artifactId>jacoco-maven-plugin</artifactId>
+		    <version>0.8.6</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5  添加引用后使用mvn test会生成allure-results目录-->
+		<dependency>
+		    <groupId>io.qameta.allure</groupId>
+		    <artifactId>allure-junit5</artifactId>
+		    <version>2.13.6</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-java</artifactId>
+		    <version>4.0.0-alpha-7</version>
+		</dependency>
+		
+		
+		
+		
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+		    	<artifactId>maven-compiler-plugin</artifactId>
+		    	<configuration>
+	                <verbose>true</verbose>
+	                <fork>true</fork>
+	               	<executable>${JAVA_HOME}/bin/javac</executable>
+            	</configuration>
+			</plugin> 
+			
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <dependencies>
+			        <dependency>
+			            <groupId>org.apache.maven.surefire</groupId>
+			            <artifactId>surefire-junit</artifactId>
+			            <version>2.6</version>
+			        </dependency>
+			    </dependencies>
+			    <configuration>
+			        <!--配置是否跳过测试用例执行-->
+			        <!--<skipTests>true</skipTests>-->
+			        <!-- <includes>
+			            <include>LoginUserControllerTest.java</include>
+			        </includes>
+			        <excludes>
+			            <exclude>LoginUserServiceTest,LoginUserServiceImplTest</exclude>
+			        </excludes> -->
+			    </configuration>
+			</plugin>
+			<!--配置jacoco统计规则-->
+			<plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.6</version>
+            <executions>
+                <execution>
+                  <id>default-prepare-agent</id>
+                    <goals>
+                      <goal>prepare-agent</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>default-report</id>
+                  <phase>prepare-package</phase>
+                  <goals>
+                      <goal>report</goal>
+                  </goals>
+                </execution>
+                <execution>
+                    <id>default-check</id>
+                  <goals>
+                      <goal>check</goal>
+                  </goals>
+                  <configuration>
+                      <rules>
+                        <!-- implementation is needed only for Maven 2 -->
+                        <rule implementation="org.jacoco.maven.RuleConfiguration">
+                            <element>BUNDLE</element>
+                            <limits>
+                                <!-- implementation is needed only for Maven 2 -->
+                                <limit implementation="org.jacoco.report.check.Limit">
+                                  <counter>COMPLEXITY</counter>
+                                  <value>COVEREDRATIO</value>
+                                  <minimum>0.20</minimum>
+                                </limit>
+                            </limits>
+                        </rule>
+                      </rules>
+                  </configuration>
+                </execution>
+            </executions>
+          </plugin>
+		</plugins>
+		
+	</build>
+
+</project>
