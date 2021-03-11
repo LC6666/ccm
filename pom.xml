@@ -113,6 +113,22 @@
 		    <artifactId>selenium-java</artifactId>
 		    <version>4.0.0-alpha-7</version>
 		</dependency>
+				<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-remote-driver 
+		<dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-remote-driver</artifactId>
+		    <version>4.0.0-alpha-7</version>
+		</dependency>-->
+		
+			<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+	<dependency>
+	    <groupId>org.seleniumhq.selenium</groupId>
+	    <artifactId>selenium-server</artifactId>
+	    <version>4.0.0-alpha-2</version>
+	</dependency>
+		
+		
+		
 		
 		
 		
